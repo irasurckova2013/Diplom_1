@@ -86,10 +86,15 @@ public class BurgerTest {
 
         burger.addIngredient(ingredientMock1);
 
-        String expectedReceipt = "(==== Sesame ====)\n" +
-                "= filling lettuce =\n" +
-                "(==== Sesame ====)\n" +
-                "\nPrice: 110.000000\n";
+        String expectedReceipt = String.format("(==== %s ====)%n" +
+                        "= %s %s =%n" +
+                        "(==== %s ====)%n" +
+                        "%nPrice: %.6f%n",
+                bunMock.getName(),
+                ingredientMock1.getType().toString().toLowerCase(),
+                ingredientMock1.getName(),
+                bunMock.getName(),
+                burger.getPrice());
 
         assertEquals(expectedReceipt, burger.getReceipt());
     }
